@@ -1,0 +1,2325 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VillaLux — Exclusive Villa Stays</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --sand: #eef3ef;
+        --sand-dark: #d7e3dc;
+        --cream: #f8fbf9;
+        --earth: #2f6d62;
+        --earth-dark: #1e4e47;
+        --charcoal: #142321;
+        --muted: #5e7270;
+        --white: #ffffff;
+        --green: #2e8b57;
+        --red: #b6465f;
+        --accent: #e09a4e;
+        --accent-light: #f6dfc5;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--cream);
+        color: var(--charcoal);
+        overflow-x: hidden;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 48px;
+        background: rgba(248, 251, 249, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--sand-dark);
+        transition: all 0.3s;
+      }
+      .nav-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--earth-dark);
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: var(--accent);
+      }
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+      .nav-links a {
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--earth-dark);
+      }
+      .nav-admin-btn {
+        background: var(--earth-dark);
+        color: var(--cream);
+        border: none;
+        padding: 9px 20px;
+        border-radius: 2px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .nav-admin-btn:hover {
+        background: var(--accent);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        background: linear-gradient(
+          160deg,
+          #10201d 0%,
+          #1a3934 40%,
+          #25524a 100%
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 100px 24px 60px;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c4933f' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+      }
+      .hero > * {
+        position: relative;
+        z-index: 1;
+      }
+      .hero-tag {
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 24px;
+      }
+      .hero h1 {
+        font-size: clamp(3rem, 7vw, 6rem);
+        font-weight: 300;
+        color: var(--cream);
+        line-height: 1.05;
+        margin-bottom: 24px;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero p {
+        font-size: 1.05rem;
+        color: rgba(248, 251, 249, 0.66);
+        max-width: 480px;
+        line-height: 1.7;
+        margin-bottom: 48px;
+      }
+      .hero-btns {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: var(--earth-dark);
+        border: none;
+        padding: 14px 36px;
+        border-radius: 2px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background: #c98236;
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--cream);
+        border: 1px solid rgba(248, 251, 249, 0.35);
+        padding: 14px 36px;
+        border-radius: 2px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .btn-outline:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .hero-scroll {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: rgba(248, 251, 249, 0.48);
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+      .scroll-line {
+        width: 1px;
+        height: 48px;
+        background: linear-gradient(
+          to bottom,
+          rgba(224, 154, 78, 0.6),
+          transparent
+        );
+        animation: scrollpulse 2s ease-in-out infinite;
+      }
+      @keyframes scrollpulse {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* ── SECTION ── */
+      section {
+        padding: 96px 48px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .section-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
+      .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 300;
+        color: var(--earth-dark);
+        line-height: 1.1;
+      }
+      .section-title em {
+        font-style: italic;
+      }
+      .section-divider {
+        width: 48px;
+        height: 1px;
+        background: var(--accent);
+        margin: 24px 0;
+      }
+
+      /* ── FILTER BAR ── */
+      .filter-bar {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 20px 48px;
+        background: var(--sand);
+        border-top: 1px solid var(--sand-dark);
+        border-bottom: 1px solid var(--sand-dark);
+        position: sticky;
+        top: 68px;
+        z-index: 900;
+      }
+      .filter-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-right: 4px;
+      }
+      .filter-chip {
+        padding: 7px 18px;
+        border-radius: 40px;
+        border: 1px solid var(--sand-dark);
+        background: var(--cream);
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--muted);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .filter-chip.active,
+      .filter-chip:hover {
+        background: var(--earth-dark);
+        color: var(--cream);
+        border-color: var(--earth-dark);
+      }
+      .filter-search {
+        margin-left: auto;
+        padding: 8px 16px;
+        border: 1px solid var(--sand-dark);
+        border-radius: 2px;
+        background: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.85rem;
+        color: var(--charcoal);
+        outline: none;
+        min-width: 200px;
+      }
+      .filter-search:focus {
+        border-color: var(--earth);
+      }
+
+      /* ── VILLA GRID ── */
+      .villas-section {
+        padding-top: 56px;
+        padding-bottom: 96px;
+      }
+      .villa-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 32px;
+        margin-top: 48px;
+      }
+
+      .villa-card {
+        background: var(--white);
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 2px 24px rgba(20, 35, 33, 0.08);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        cursor: pointer;
+      }
+      .villa-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 40px rgba(20, 35, 33, 0.16);
+      }
+
+      .villa-img-wrap {
+        position: relative;
+        height: 240px;
+        overflow: hidden;
+        background: var(--sand);
+      }
+      .villa-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+      .villa-card:hover .villa-img-wrap img {
+        transform: scale(1.04);
+      }
+      .villa-badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        padding: 5px 12px;
+        border-radius: 2px;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .badge-available {
+        background: var(--green);
+        color: #fff;
+      }
+      .badge-booked {
+        background: var(--red);
+        color: #fff;
+      }
+      .badge-partial {
+        background: var(--accent);
+        color: var(--earth-dark);
+      }
+
+      .villa-body {
+        padding: 24px;
+      }
+      .villa-location {
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .villa-name {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: var(--earth-dark);
+        margin-bottom: 12px;
+        line-height: 1.1;
+      }
+      .villa-desc {
+        font-size: 0.85rem;
+        color: var(--muted);
+        line-height: 1.65;
+        margin-bottom: 16px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .villa-meta {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      .meta-icon {
+        font-size: 1rem;
+      }
+      .villa-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 16px;
+        border-top: 1px solid var(--sand);
+      }
+      .villa-price {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--earth-dark);
+      }
+      .villa-price span {
+        font-size: 0.8rem;
+        font-weight: 300;
+        color: var(--muted);
+        font-family: "DM Sans", sans-serif;
+      }
+      .btn-view {
+        background: var(--earth-dark);
+        color: var(--cream);
+        border: none;
+        padding: 9px 20px;
+        border-radius: 2px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .btn-view:hover {
+        background: var(--accent);
+        color: var(--earth-dark);
+      }
+
+      /* ── MODAL OVERLAY ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(20, 35, 33, 0.75);
+        backdrop-filter: blur(6px);
+        overflow-y: auto;
+        padding: 40px 16px;
+      }
+      .modal-overlay.open {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .modal {
+        background: var(--cream);
+        width: 100%;
+        max-width: 880px;
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+        animation: modalin 0.3s ease;
+      }
+      @keyframes modalin {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        z-index: 10;
+        background: rgba(248, 251, 249, 0.9);
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--charcoal);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        background: var(--sand);
+      }
+      .modal-body {
+        padding: 36px 40px;
+      }
+      .modal-location {
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .modal-title {
+        font-size: 2.4rem;
+        font-weight: 300;
+        color: var(--earth-dark);
+        margin-bottom: 16px;
+      }
+      .modal-desc {
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.75;
+        margin-bottom: 28px;
+      }
+      .modal-amenities {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+      .amenity-tag {
+        padding: 6px 14px;
+        background: var(--sand);
+        border-radius: 40px;
+        font-size: 0.78rem;
+        color: var(--earth);
+      }
+
+      .modal-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+      @media (max-width: 640px) {
+        .modal-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── CALENDAR ── */
+      .cal-wrap {
+      }
+      .cal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+      .cal-header h4 {
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .cal-nav {
+        background: none;
+        border: 1px solid var(--sand-dark);
+        width: 30px;
+        height: 30px;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: var(--earth);
+        transition: all 0.15s;
+      }
+      .cal-nav:hover {
+        background: var(--earth-dark);
+        color: var(--cream);
+        border-color: var(--earth-dark);
+      }
+      .cal-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 3px;
+      }
+      .cal-day-name {
+        text-align: center;
+        font-size: 0.65rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        padding: 4px 0;
+      }
+      .cal-day {
+        aspect-ratio: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+        font-size: 0.8rem;
+        cursor: default;
+        position: relative;
+      }
+      .cal-day.empty {
+        background: transparent;
+      }
+      .cal-day.available {
+        background: rgba(46, 139, 87, 0.14);
+        color: var(--green);
+        font-weight: 500;
+      }
+      .cal-day.booked {
+        background: rgba(182, 70, 95, 0.14);
+        color: var(--red);
+        text-decoration: line-through;
+      }
+      .cal-day.today {
+        outline: 2px solid var(--accent);
+        outline-offset: -2px;
+      }
+      .cal-day.past {
+        opacity: 0.35;
+      }
+      .cal-day-price {
+        font-size: 0.55rem;
+        color: var(--accent);
+        margin-top: 1px;
+      }
+      .cal-legend {
+        display: flex;
+        gap: 16px;
+        margin-top: 12px;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+      .legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .legend-available {
+        background: var(--green);
+      }
+      .legend-booked {
+        background: var(--red);
+      }
+
+      /* ── BOOKING FORM ── */
+      .booking-form {
+      }
+      .booking-price-big {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: var(--earth-dark);
+        margin-bottom: 4px;
+      }
+      .booking-price-big span {
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--muted);
+        font-family: "DM Sans", sans-serif;
+      }
+      .form-group {
+        margin-bottom: 14px;
+      }
+      .form-group label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .form-control {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid var(--sand-dark);
+        border-radius: 2px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.88rem;
+        color: var(--charcoal);
+        background: var(--white);
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .form-control:focus {
+        border-color: var(--earth);
+      }
+      .btn-book {
+        width: 100%;
+        padding: 14px;
+        background: var(--earth-dark);
+        color: var(--cream);
+        border: none;
+        border-radius: 2px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 8px;
+      }
+      .btn-book:hover {
+        background: var(--accent);
+        color: var(--earth-dark);
+      }
+
+      /* ── ADMIN PANEL ── */
+      #admin-panel {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 3000;
+        background: var(--charcoal);
+        overflow-y: auto;
+      }
+      #admin-panel.open {
+        display: block;
+      }
+      .admin-header {
+        padding: 20px 40px;
+        background: rgba(255, 255, 255, 0.04);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .admin-header h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.8rem;
+        color: var(--cream);
+        font-weight: 300;
+      }
+      .admin-header h2 span {
+        color: var(--accent);
+      }
+      .admin-close {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: var(--cream);
+        padding: 8px 16px;
+        border-radius: 2px;
+        font-size: 0.82rem;
+        cursor: pointer;
+        font-family: "DM Sans", sans-serif;
+        letter-spacing: 0.06em;
+        transition: background 0.2s;
+      }
+      .admin-close:hover {
+        background: var(--red);
+      }
+      .admin-body {
+        padding: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      @media (max-width: 900px) {
+        .admin-body {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .admin-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+        padding: 28px;
+      }
+      .admin-card h3 {
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 24px;
+      }
+
+      .admin-form-group {
+        margin-bottom: 14px;
+      }
+      .admin-form-group label {
+        display: block;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(248, 251, 249, 0.56);
+        margin-bottom: 6px;
+      }
+      .admin-input,
+      .admin-select,
+      .admin-textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.07);
+        color: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.88rem;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .admin-input:focus,
+      .admin-select:focus,
+      .admin-textarea:focus {
+        border-color: var(--accent);
+      }
+      .admin-select option {
+        background: var(--charcoal);
+      }
+      .admin-textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+      .btn-admin-add {
+        width: 100%;
+        padding: 12px;
+        background: var(--accent);
+        color: var(--earth-dark);
+        border: none;
+        border-radius: 2px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 6px;
+      }
+      .btn-admin-add:hover {
+        background: #c98236;
+      }
+
+      .admin-villa-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .admin-enquiry-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .admin-villa-item {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 3px;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .admin-enquiry-item {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 3px;
+        padding: 14px 16px;
+      }
+      .aei-head {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--cream);
+        margin-bottom: 8px;
+      }
+      .aei-meta {
+        font-size: 0.75rem;
+        color: rgba(248, 251, 249, 0.56);
+        line-height: 1.6;
+      }
+      .aei-meta strong {
+        color: rgba(248, 251, 249, 0.82);
+        font-weight: 500;
+      }
+      .avi-name {
+        flex: 1;
+        font-size: 0.95rem;
+        color: var(--cream);
+      }
+      .avi-location {
+        font-size: 0.78rem;
+        color: rgba(248, 251, 249, 0.5);
+      }
+      .avi-status-select {
+        padding: 6px 10px;
+        border-radius: 2px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.07);
+        color: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.8rem;
+        cursor: pointer;
+        outline: none;
+      }
+      .avi-status-select option {
+        background: var(--charcoal);
+      }
+      .avi-delete {
+        background: none;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(248, 251, 249, 0.56);
+        padding: 6px 12px;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.78rem;
+        transition: all 0.2s;
+      }
+      .avi-delete:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: #fff;
+      }
+      .avi-edit {
+        background: none;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: var(--cream);
+        padding: 6px 12px;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 0.78rem;
+        transition: all 0.2s;
+      }
+      .avi-edit:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      /* ── CONTACT SECTION ── */
+      .contact-section {
+        background: var(--sand);
+        padding: 96px 48px;
+      }
+      .contact-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      @media (max-width: 768px) {
+        .contact-inner {
+          grid-template-columns: 1fr;
+        }
+      }
+      .contact-info p {
+        color: var(--muted);
+        line-height: 1.75;
+        margin-top: 16px;
+        margin-bottom: 32px;
+      }
+      .contact-detail {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+      .contact-detail .icon {
+        font-size: 1.2rem;
+        margin-top: 2px;
+      }
+      .contact-detail div {
+        font-size: 0.88rem;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .contact-form-wrap {
+        background: var(--white);
+        padding: 36px;
+        border-radius: 4px;
+        box-shadow: 0 2px 24px rgba(20, 35, 33, 0.08);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--charcoal);
+        color: rgba(248, 251, 249, 0.56);
+        text-align: center;
+        padding: 32px;
+        font-size: 0.8rem;
+      }
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      /* ── TOAST ── */
+      .toast {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        z-index: 9999;
+        background: var(--earth-dark);
+        color: var(--cream);
+        padding: 14px 24px;
+        border-radius: 2px;
+        font-size: 0.85rem;
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.3s;
+        border-left: 3px solid var(--accent);
+      }
+      .toast.show {
+        transform: none;
+        opacity: 1;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 768px) {
+        nav {
+          padding: 14px 20px;
+        }
+        .nav-links {
+          display: none;
+        }
+        section {
+          padding: 64px 20px;
+        }
+        .filter-bar {
+          padding: 14px 20px;
+        }
+        .villa-grid {
+          grid-template-columns: 1fr;
+        }
+        .modal-body {
+          padding: 24px 20px;
+        }
+        .admin-body {
+          padding: 20px;
+        }
+        .contact-section {
+          padding: 64px 20px;
+        }
+      }
+
+      /* No villas message */
+      .no-villas {
+        text-align: center;
+        padding: 64px 24px;
+        color: var(--muted);
+        font-size: 1.1rem;
+        grid-column: 1/-1;
+      }
+
+      /* Image placeholder gradient */
+      .img-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--sand-dark) 0%,
+          var(--earth) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="#" class="nav-logo">Villa<span>Lux</span></a>
+      <ul class="nav-links">
+        <li><a href="#villas">Villas</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <button class="nav-admin-btn" onclick="openAdmin()">⚙ Admin</button>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-tag">Exclusive Private Villas</div>
+      <h1>Find Your <em>Perfect</em><br />Villa Escape</h1>
+      <p>
+        Handpicked luxury villas. Check live availability, view pricing, and
+        book your stay — effortlessly.
+      </p>
+      <div class="hero-btns">
+        <a href="#villas" class="btn-primary">Browse Villas</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <button
+        class="filter-chip active"
+        data-filter="all"
+        onclick="filterVillas('all', this)"
+      >
+        All
+      </button>
+      <button
+        class="filter-chip"
+        data-filter="available"
+        onclick="filterVillas('available', this)"
+      >
+        Available
+      </button>
+      <button
+        class="filter-chip"
+        data-filter="booked"
+        onclick="filterVillas('booked', this)"
+      >
+        Booked
+      </button>
+      <button
+        class="filter-chip"
+        data-filter="partial"
+        onclick="filterVillas('partial', this)"
+      >
+        Partially Available
+      </button>
+      <input
+        class="filter-search"
+        type="text"
+        placeholder="🔍  Search by name or location…"
+        oninput="searchVillas(this.value)"
+      />
+    </div>
+
+    <!-- VILLAS -->
+    <section class="villas-section" id="villas">
+      <div class="section-label">Our Portfolio</div>
+      <h2 class="section-title">Exclusive <em>Villas</em></h2>
+      <div class="section-divider"></div>
+      <div class="villa-grid" id="villa-grid"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section
+      id="about"
+      style="background: var(--sand); max-width: 100%; padding: 80px 48px"
+    >
+      <div
+        style="
+          max-width: 1280px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 64px;
+          align-items: center;
+        "
+      >
+        <div>
+          <div class="section-label">Who We Are</div>
+          <h2 class="section-title">
+            Curated <em>Luxury</em><br />Experiences
+          </h2>
+          <div class="section-divider"></div>
+          <p style="color: var(--muted); line-height: 1.8; margin-bottom: 16px">
+            We are a boutique villa showcase platform connecting discerning
+            travellers with the finest private villas. Each property is
+            personally vetted for quality, privacy, and exceptional guest
+            experience.
+          </p>
+          <p style="color: var(--muted); line-height: 1.8">
+            From beachfront estates to mountain retreats, every villa on our
+            portal offers exclusivity, comfort, and unforgettable memories.
+          </p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px">
+          <div
+            style="
+              background: var(--white);
+              padding: 28px;
+              border-radius: 4px;
+              text-align: center;
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 2.8rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+              id="stat-villas"
+            >
+              0
+            </div>
+            <div
+              style="
+                font-size: 0.8rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-top: 4px;
+              "
+            >
+              Villas Listed
+            </div>
+          </div>
+          <div
+            style="
+              background: var(--white);
+              padding: 28px;
+              border-radius: 4px;
+              text-align: center;
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 2.8rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+            >
+              150+
+            </div>
+            <div
+              style="
+                font-size: 0.8rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-top: 4px;
+              "
+            >
+              Happy Guests
+            </div>
+          </div>
+          <div
+            style="
+              background: var(--white);
+              padding: 28px;
+              border-radius: 4px;
+              text-align: center;
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 2.8rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+            >
+              5★
+            </div>
+            <div
+              style="
+                font-size: 0.8rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-top: 4px;
+              "
+            >
+              Avg Rating
+            </div>
+          </div>
+          <div
+            style="
+              background: var(--white);
+              padding: 28px;
+              border-radius: 4px;
+              text-align: center;
+            "
+          >
+            <div
+              style="
+                font-family: &quot;Cormorant Garamond&quot;, serif;
+                font-size: 2.8rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+            >
+              24/7
+            </div>
+            <div
+              style="
+                font-size: 0.8rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-top: 4px;
+              "
+            >
+              Support
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <div class="contact-section" id="contact">
+      <div class="contact-inner">
+        <div class="contact-info">
+          <div class="section-label">Get in Touch</div>
+          <h2 class="section-title">Ready to <em>Book</em>?</h2>
+          <div class="section-divider"></div>
+          <p>
+            Interested in a villa? Send us your details and preferred dates. Our
+            team will respond within 24 hours with a personalised booking
+            confirmation.
+          </p>
+          <div class="contact-detail">
+            <span class="icon">📞</span>
+            <div><strong>+91 912345678</strong><br />Mon–Sat, 9am–7pm IST</div>
+          </div>
+          <div class="contact-detail">
+            <span class="icon">✉️</span>
+            <div>
+              <strong>bookings@villalux.in</strong><br />24–48hr response time
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span class="icon">📍</span>
+            <div><strong>Pune,Maharashtra</strong><br />Serving PAN India</div>
+          </div>
+        </div>
+        <div class="contact-form-wrap">
+          <div class="admin-form-group">
+            <label
+              style="
+                font-size: 0.75rem;
+                font-weight: 500;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--muted);
+                display: block;
+                margin-bottom: 6px;
+              "
+              >Your Name</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="contact-name"
+              placeholder="Full name"
+            />
+          </div>
+          <div class="admin-form-group" style="margin-bottom: 14px">
+            <label
+              style="
+                font-size: 0.75rem;
+                font-weight: 500;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--muted);
+                display: block;
+                margin-bottom: 6px;
+              "
+              >Phone / Email</label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="contact-phone"
+              placeholder="Your contact"
+            />
+          </div>
+          <div class="admin-form-group" style="margin-bottom: 14px">
+            <label
+              style="
+                font-size: 0.75rem;
+                font-weight: 500;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--muted);
+                display: block;
+                margin-bottom: 6px;
+              "
+              >Villa Interest</label
+            >
+            <select class="form-control" id="contact-villa">
+              <option value="">— Select a villa —</option>
+            </select>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 12px;
+              margin-bottom: 14px;
+            "
+          >
+            <div>
+              <label
+                style="
+                  font-size: 0.75rem;
+                  font-weight: 500;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                  color: var(--muted);
+                  display: block;
+                  margin-bottom: 6px;
+                "
+                >Check-in</label
+              >
+              <input class="form-control" type="date" id="contact-checkin" />
+            </div>
+            <div>
+              <label
+                style="
+                  font-size: 0.75rem;
+                  font-weight: 500;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                  color: var(--muted);
+                  display: block;
+                  margin-bottom: 6px;
+                "
+                >Check-out</label
+              >
+              <input class="form-control" type="date" id="contact-checkout" />
+            </div>
+          </div>
+          <div style="margin-bottom: 14px">
+            <label
+              style="
+                font-size: 0.75rem;
+                font-weight: 500;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--muted);
+                display: block;
+                margin-bottom: 6px;
+              "
+              >Message</label
+            >
+            <textarea
+              class="form-control"
+              id="contact-msg"
+              rows="3"
+              placeholder="Any special requests or questions…"
+              style="resize: vertical"
+            ></textarea>
+          </div>
+          <button class="btn-book" onclick="submitContact()">
+            Send Enquiry →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        © 2026 VillaLux. All rights reserved. | Built for
+        <a href="#">your dream villa getaway</a>.
+      </p>
+      <p style="margin-top: 8px; font-size: 0.72rem"></p>
+    </footer>
+
+    <!-- VILLA DETAIL MODAL -->
+    <div class="modal-overlay" id="villa-modal">
+      <div class="modal" id="modal-content">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div id="modal-body-inner"></div>
+      </div>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div id="admin-panel">
+      <div class="admin-header">
+        <h2>Admin <span>Dashboard</span></h2>
+        <button class="admin-close" onclick="closeAdmin()">✕ Close</button>
+      </div>
+      <div class="admin-body">
+        <!-- Add Villa -->
+        <div class="admin-card">
+          <h3>➕ Add New Villa</h3>
+          <div class="admin-form-group">
+            <label>Villa Name</label>
+            <input
+              class="admin-input"
+              type="text"
+              id="a-name"
+              placeholder="e.g. Villa Serenita"
+            />
+          </div>
+          <div class="admin-form-group">
+            <label>Location</label>
+            <input
+              class="admin-input"
+              type="text"
+              id="a-location"
+              placeholder="e.g. Alibaug, Maharashtra"
+            />
+          </div>
+          <div class="admin-form-group">
+            <label>Description</label>
+            <textarea
+              class="admin-textarea"
+              id="a-desc"
+              placeholder="Short description of the villa…"
+            ></textarea>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+            <div class="admin-form-group">
+              <label>Price / Night (₹)</label>
+              <input
+                class="admin-input"
+                type="number"
+                id="a-price"
+                placeholder="e.g. 15000"
+              />
+            </div>
+            <div class="admin-form-group">
+              <label>Bedrooms</label>
+              <input
+                class="admin-input"
+                type="number"
+                id="a-beds"
+                placeholder="e.g. 4"
+              />
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+            <div class="admin-form-group">
+              <label>Bathrooms</label>
+              <input
+                class="admin-input"
+                type="number"
+                id="a-baths"
+                placeholder="e.g. 3"
+              />
+            </div>
+            <div class="admin-form-group">
+              <label>Max Guests</label>
+              <input
+                class="admin-input"
+                type="number"
+                id="a-guests"
+                placeholder="e.g. 10"
+              />
+            </div>
+          </div>
+          <div class="admin-form-group">
+            <label>Amenities (comma separated)</label>
+            <input
+              class="admin-input"
+              type="text"
+              id="a-amenities"
+              placeholder="Pool, WiFi, BBQ, AC, Parking…"
+            />
+          </div>
+          <div class="admin-form-group">
+            <label>Image URL (optional)</label>
+            <input
+              class="admin-input"
+              type="text"
+              id="a-img"
+              placeholder="https://…"
+            />
+          </div>
+          <div class="admin-form-group">
+            <label>Status</label>
+            <select class="admin-select" id="a-status">
+              <option value="available">Available</option>
+              <option value="partial">Partially Available</option>
+              <option value="booked">Booked</option>
+            </select>
+          </div>
+          <div class="admin-form-group">
+            <label>Booked Dates (comma separated, YYYY-MM-DD)</label>
+            <input
+              class="admin-input"
+              type="text"
+              id="a-booked-dates"
+              placeholder="2025-08-10, 2025-08-11, 2025-08-12"
+            />
+          </div>
+          <div style="display: flex; gap: 10px">
+            <button class="btn-admin-add" id="a-submit-btn" onclick="addVilla()">
+              Add Villa to Portal
+            </button>
+            <button
+              class="avi-delete"
+              id="a-cancel-btn"
+              type="button"
+              onclick="cancelVillaEdit()"
+              style="display: none; margin-top: 6px"
+            >
+              Cancel Edit
+            </button>
+          </div>
+        </div>
+
+        <!-- Manage Villas -->
+        <div class="admin-card">
+          <h3>🏡 Manage Villas</h3>
+          <div class="admin-villa-list" id="admin-villa-list">
+            <p style="color: rgba(248, 251, 249, 0.48); font-size: 0.85rem">
+              No villas added yet.
+            </p>
+          </div>
+        </div>
+        <div class="admin-card">
+          <h3>User Enquiries</h3>
+          <div class="admin-enquiry-list" id="admin-enquiry-list">
+            <p style="color: rgba(248, 251, 249, 0.48); font-size: 0.85rem">
+              No enquiries yet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+      // ── DATA ──────────────────────────────────────────────────────
+      const ADMIN_PASSWORD = "villa2025"; // change this!
+
+      const DEFAULT_VILLAS = [
+        {
+          id: 1,
+          name: "Villa Serenita",
+          location: "Alibaug, Maharashtra",
+          desc: "A stunning beachfront villa with private pool, lush tropical gardens, and uninterrupted sea views. Perfect for families and celebrations.",
+          price: 18000,
+          beds: 5,
+          baths: 4,
+          guests: 12,
+          amenities: [
+            "Private Pool",
+            "WiFi",
+            "BBQ Deck",
+            "AC",
+            "Home Theater",
+            "Caretaker",
+            "Parking",
+          ],
+          status: "available",
+          bookedDates: ["2025-08-18", "2025-08-19", "2025-08-20"],
+          img: "",
+        },
+        {
+          id: 2,
+          name: "The Hillside Retreat",
+          location: "Lonavala, Pune",
+          desc: "Perched atop misty hills, this villa blends contemporary design with nature. Enjoy panoramic valley views from every room.",
+          price: 12500,
+          beds: 4,
+          baths: 3,
+          guests: 8,
+          amenities: [
+            "Infinity Pool",
+            "WiFi",
+            "Fireplace",
+            "AC",
+            "Chef on Request",
+            "Parking",
+            "Gym",
+          ],
+          status: "partial",
+          bookedDates: [
+            "2025-08-10",
+            "2025-08-11",
+            "2025-08-25",
+            "2025-08-26",
+            "2025-08-27",
+          ],
+          img: "",
+        },
+        {
+          id: 3,
+          name: "Azure Shore Villa",
+          location: "Goa, North Goa",
+          desc: "Steps from a private beach, this Portuguese-heritage villa is completely booked this month. Check again next month!",
+          price: 22000,
+          beds: 6,
+          baths: 5,
+          guests: 14,
+          amenities: [
+            "Beach Access",
+            "Pool",
+            "WiFi",
+            "AC",
+            "Butler",
+            "Beach Bonfire",
+            "Parking",
+          ],
+          status: "booked",
+          bookedDates: [],
+          img: "",
+        },
+      ];
+
+      let villas = [];
+      let enquiries = [];
+      let editingVillaId = null;
+      let currentFilter = "all";
+      let currentSearch = "";
+      let calMonthOffset = {};
+
+      function loadVillas() {
+        const stored = localStorage.getItem("villaLuxData");
+        villas = stored
+          ? JSON.parse(stored)
+          : JSON.parse(JSON.stringify(DEFAULT_VILLAS));
+      }
+      function saveVillas() {
+        localStorage.setItem("villaLuxData", JSON.stringify(villas));
+      }
+      function loadEnquiries() {
+        const stored = localStorage.getItem("villaLuxEnquiries");
+        enquiries = stored ? JSON.parse(stored) : [];
+      }
+      function saveEnquiries() {
+        localStorage.setItem("villaLuxEnquiries", JSON.stringify(enquiries));
+      }
+      function escapeHtml(value) {
+        return String(value || "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+      function formatDateTime(isoText) {
+        const dt = new Date(isoText);
+        if (Number.isNaN(dt.getTime())) return "-";
+        return dt.toLocaleString("en-IN", {
+          year: "numeric",
+          month: "short",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      }
+
+      // ── RENDER GRID ───────────────────────────────────────────────
+      function renderGrid() {
+        const grid = document.getElementById("villa-grid");
+        let filtered = villas.filter((v) => {
+          if (currentFilter !== "all" && v.status !== currentFilter)
+            return false;
+          if (
+            currentSearch &&
+            !v.name.toLowerCase().includes(currentSearch) &&
+            !v.location.toLowerCase().includes(currentSearch)
+          )
+            return false;
+          return true;
+        });
+
+        if (!filtered.length) {
+          grid.innerHTML =
+            '<div class="no-villas">🏡 No villas match your search.</div>';
+          return;
+        }
+        grid.innerHTML = filtered.map((v) => villaCard(v)).join("");
+        document.getElementById("stat-villas").textContent = villas.length;
+        updateContactVillaSelect();
+      }
+
+      function villaCard(v) {
+        const badgeClass =
+          v.status === "available"
+            ? "badge-available"
+            : v.status === "booked"
+              ? "badge-booked"
+              : "badge-partial";
+        const badgeText =
+          v.status === "available"
+            ? "Available"
+            : v.status === "booked"
+              ? "Booked"
+              : "Partial";
+        const imgHtml = v.img
+          ? `<img src="${v.img}" alt="${v.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"><div class="img-placeholder" style="display:none">🏡</div>`
+          : `<div class="img-placeholder">🏡</div>`;
+        return `
+  <div class="villa-card" onclick="openVilla(${v.id})">
+    <div class="villa-img-wrap">
+      ${imgHtml}
+      <span class="villa-badge ${badgeClass}">${badgeText}</span>
+    </div>
+    <div class="villa-body">
+      <div class="villa-location">📍 ${v.location}</div>
+      <div class="villa-name">${v.name}</div>
+      <div class="villa-desc">${v.desc}</div>
+      <div class="villa-meta">
+        <span class="meta-item"><span class="meta-icon">🛏</span>${v.beds} Beds</span>
+        <span class="meta-item"><span class="meta-icon">🚿</span>${v.baths} Baths</span>
+        <span class="meta-item"><span class="meta-icon">👥</span>Up to ${v.guests}</span>
+      </div>
+      <div class="villa-footer">
+        <div class="villa-price">₹${v.price.toLocaleString("en-IN")} <span>/ night</span></div>
+        <button class="btn-view">View Details</button>
+      </div>
+    </div>
+  </div>`;
+      }
+
+      // ── FILTER / SEARCH ────────────────────────────────────────────
+      function filterVillas(f, btn) {
+        currentFilter = f;
+        document
+          .querySelectorAll(".filter-chip")
+          .forEach((c) => c.classList.remove("active"));
+        btn.classList.add("active");
+        renderGrid();
+      }
+      function searchVillas(q) {
+        currentSearch = q.toLowerCase();
+        renderGrid();
+      }
+
+      // ── VILLA MODAL ────────────────────────────────────────────────
+      function openVilla(id) {
+        const v = villas.find((x) => x.id === id);
+        if (!v) return;
+        const key = `cal_${id}`;
+        if (!calMonthOffset[key]) calMonthOffset[key] = 0;
+
+        const imgHtml = v.img
+          ? `<img class="modal-img" src="${v.img}" alt="${v.name}" onerror="this.outerHTML='<div class=modal-img style=background:linear-gradient(135deg,var(--sand-dark),var(--earth));display:flex;align-items:center;justify-content:center;font-size:4rem>🏡</div>'">`
+          : `<div class="modal-img" style="background:linear-gradient(135deg,var(--sand-dark),var(--earth));display:flex;align-items:center;justify-content:center;font-size:4rem">🏡</div>`;
+
+        const amenHtml = (v.amenities || [])
+          .map((a) => `<span class="amenity-tag">${a}</span>`)
+          .join("");
+        const statusLabel =
+          v.status === "available"
+            ? '<span style="color:var(--green);font-weight:500">✅ Available</span>'
+            : v.status === "booked"
+              ? '<span style="color:var(--red);font-weight:500">❌ Booked</span>'
+              : '<span style="color:var(--accent);font-weight:500">⚡ Partially Available</span>';
+
+        document.getElementById("modal-body-inner").innerHTML = `
+    ${imgHtml}
+    <div class="modal-body">
+      <div class="modal-location">📍 ${v.location}</div>
+      <h2 class="modal-title">${v.name}</h2>
+      <p>${statusLabel}</p>
+      <p class="modal-desc" style="margin-top:12px">${v.desc}</p>
+      <div class="villa-meta" style="margin-bottom:20px">
+        <span class="meta-item"><span class="meta-icon">🛏</span>${v.beds} Bedrooms</span>
+        <span class="meta-item"><span class="meta-icon">🚿</span>${v.baths} Bathrooms</span>
+        <span class="meta-item"><span class="meta-icon">👥</span>Up to ${v.guests} guests</span>
+      </div>
+      <div class="modal-amenities">${amenHtml}</div>
+      <div class="modal-grid">
+        <div class="cal-wrap" id="modal-cal-${id}"></div>
+        <div class="booking-form">
+          <div class="booking-price-big">₹${v.price.toLocaleString("en-IN")} <span>/ night</span></div>
+          <p style="color:var(--muted);font-size:.8rem;margin-bottom:20px">Contact us to confirm your booking</p>
+          <div class="form-group">
+            <label>Your Name</label>
+            <input class="form-control" type="text" id="bk-name" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label>Phone / Email</label>
+            <input class="form-control" type="text" id="bk-contact" placeholder="Contact info">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="form-group">
+              <label>Check-in</label>
+              <input class="form-control" type="date" id="bk-in">
+            </div>
+            <div class="form-group">
+              <label>Check-out</label>
+              <input class="form-control" type="date" id="bk-out">
+            </div>
+          </div>
+          <button class="btn-book" onclick="submitBooking(${id})">Send Booking Enquiry →</button>
+        </div>
+      </div>
+    </div>`;
+
+        document.getElementById("villa-modal").classList.add("open");
+        document.body.style.overflow = "hidden";
+        renderCalendar(id, calMonthOffset[key]);
+      }
+
+      function closeModal() {
+        document.getElementById("villa-modal").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      document
+        .getElementById("villa-modal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
+
+      // ── CALENDAR ──────────────────────────────────────────────────
+      function renderCalendar(villaId, offset) {
+        const v = villas.find((x) => x.id === villaId);
+        if (!v) return;
+        const calEl = document.getElementById(`modal-cal-${villaId}`);
+        if (!calEl) return;
+
+        const today = new Date();
+        const d = new Date(today.getFullYear(), today.getMonth() + offset, 1);
+        const year = d.getFullYear();
+        const month = d.getMonth();
+        const monthName = d.toLocaleString("default", {
+          month: "long",
+          year: "numeric",
+        });
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        const bookedSet = new Set(v.bookedDates || []);
+        const days = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+
+        let cells = "";
+        for (let i = 0; i < firstDay; i++)
+          cells += `<div class="cal-day empty"></div>`;
+
+        for (let d2 = 1; d2 <= daysInMonth; d2++) {
+          const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(d2).padStart(2, "0")}`;
+          const dayDate = new Date(year, month, d2);
+          const todayDate = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate(),
+          );
+          const isPast = dayDate < todayDate;
+          const isToday = dayDate.getTime() === todayDate.getTime();
+          const isBooked = bookedSet.has(dateStr);
+          let cls = isBooked ? "booked" : "available";
+          if (isPast) cls += " past";
+          if (isToday) cls += " today";
+          const priceShow =
+            !isBooked && !isPast
+              ? `<div class="cal-day-price">₹${(v.price / 1000).toFixed(0)}k</div>`
+              : "";
+          cells += `<div class="cal-day ${cls}"><div>${d2}</div>${priceShow}</div>`;
+        }
+
+        calEl.innerHTML = `
+    <div class="cal-header">
+      <button class="cal-nav" onclick="shiftCal(${villaId}, ${offset - 1})">‹</button>
+      <h4>${monthName}</h4>
+      <button class="cal-nav" onclick="shiftCal(${villaId}, ${offset + 1})">›</button>
+    </div>
+    <div class="cal-grid">
+      ${days.map((d2) => `<div class="cal-day-name">${d2}</div>`).join("")}
+      ${cells}
+    </div>
+    <div class="cal-legend">
+      <span class="legend-item"><span class="legend-dot legend-available"></span>Available</span>
+      <span class="legend-item"><span class="legend-dot legend-booked"></span>Booked</span>
+    </div>`;
+      }
+
+      function shiftCal(villaId, newOffset) {
+        const key = `cal_${villaId}`;
+        calMonthOffset[key] = newOffset;
+        renderCalendar(villaId, newOffset);
+      }
+
+      // ── BOOKING ENQUIRY ────────────────────────────────────────────
+      function submitBooking(villaId) {
+        const v = villas.find((x) => x.id === villaId);
+        const name = document.getElementById("bk-name").value.trim();
+        const contact = document.getElementById("bk-contact").value.trim();
+        const checkin = document.getElementById("bk-in").value;
+        const checkout = document.getElementById("bk-out").value;
+        if (!name || !contact) {
+          showToast("Please fill in your name and contact.");
+          return;
+        }
+        enquiries.unshift({
+          id: Date.now(),
+          source: "villa-modal",
+          villaId,
+          villaName: v ? v.name : "Unknown",
+          name,
+          contact,
+          checkin,
+          checkout,
+          message: "",
+          createdAt: new Date().toISOString(),
+        });
+        saveEnquiries();
+        if (document.getElementById("admin-panel").classList.contains("open")) {
+          renderEnquiryList();
+        }
+        showToast(
+          `? Enquiry sent for ${v.name}! We'll contact you within 24hrs.`,
+        );
+        setTimeout(closeModal, 1200);
+      }
+      function submitContact() {
+        const name = document.getElementById("contact-name").value.trim();
+        const phone = document.getElementById("contact-phone").value.trim();
+        const villaId = document.getElementById("contact-villa").value;
+        const checkin = document.getElementById("contact-checkin").value;
+        const checkout = document.getElementById("contact-checkout").value;
+        const msg = document.getElementById("contact-msg").value.trim();
+        if (!name || !phone) {
+          showToast("Please fill in your name and contact.");
+          return;
+        }
+        const chosenVilla = villas.find(
+          (v) => String(v.id) === String(villaId),
+        );
+        enquiries.unshift({
+          id: Date.now(),
+          source: "contact-form",
+          villaId: villaId || "",
+          villaName: chosenVilla ? chosenVilla.name : "Not selected",
+          name,
+          contact: phone,
+          checkin,
+          checkout,
+          message: msg,
+          createdAt: new Date().toISOString(),
+        });
+        saveEnquiries();
+        if (document.getElementById("admin-panel").classList.contains("open")) {
+          renderEnquiryList();
+        }
+        showToast(`Thanks ${name}! We'll get back to you soon.`);
+        document.getElementById("contact-name").value = "";
+        document.getElementById("contact-phone").value = "";
+        document.getElementById("contact-villa").value = "";
+        document.getElementById("contact-checkin").value = "";
+        document.getElementById("contact-checkout").value = "";
+        document.getElementById("contact-msg").value = "";
+      }
+
+      // ── ADMIN ──────────────────────────────────────────────────────
+      function openAdmin() {
+        const pw = prompt("Enter admin password:");
+        if (pw !== ADMIN_PASSWORD) {
+          alert("Incorrect password.");
+          return;
+        }
+        document.getElementById("admin-panel").classList.add("open");
+        document.body.style.overflow = "hidden";
+        renderAdminList();
+        renderEnquiryList();
+        setVillaFormMode(!!editingVillaId);
+      }
+      function closeAdmin() {
+        document.getElementById("admin-panel").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      function clearVillaForm() {
+        [
+          "a-name",
+          "a-location",
+          "a-desc",
+          "a-price",
+          "a-beds",
+          "a-baths",
+          "a-guests",
+          "a-amenities",
+          "a-img",
+          "a-booked-dates",
+        ].forEach((id2) => {
+          document.getElementById(id2).value = "";
+        });
+        document.getElementById("a-status").value = "available";
+      }
+      function setVillaFormMode(isEditing) {
+        const submitBtn = document.getElementById("a-submit-btn");
+        const cancelBtn = document.getElementById("a-cancel-btn");
+        submitBtn.textContent = isEditing
+          ? "Update Villa Details"
+          : "Add Villa to Portal";
+        cancelBtn.style.display = isEditing ? "inline-block" : "none";
+      }
+      function cancelVillaEdit() {
+        editingVillaId = null;
+        clearVillaForm();
+        setVillaFormMode(false);
+      }
+      function editVilla(id) {
+        const v = villas.find((x) => x.id === id);
+        if (!v) return;
+        editingVillaId = id;
+        document.getElementById("a-name").value = v.name || "";
+        document.getElementById("a-location").value = v.location || "";
+        document.getElementById("a-desc").value = v.desc || "";
+        document.getElementById("a-price").value = v.price || "";
+        document.getElementById("a-beds").value = v.beds || "";
+        document.getElementById("a-baths").value = v.baths || "";
+        document.getElementById("a-guests").value = v.guests || "";
+        document.getElementById("a-amenities").value = (v.amenities || []).join(
+          ", ",
+        );
+        document.getElementById("a-img").value = v.img || "";
+        document.getElementById("a-status").value = v.status || "available";
+        document.getElementById("a-booked-dates").value = (
+          v.bookedDates || []
+        ).join(", ");
+        setVillaFormMode(true);
+        showToast(`Editing "${v.name}"`);
+      }
+
+      function addVilla() {
+        const name = document.getElementById("a-name").value.trim();
+        const location = document.getElementById("a-location").value.trim();
+        const desc = document.getElementById("a-desc").value.trim();
+        const price = parseInt(document.getElementById("a-price").value);
+        const beds = parseInt(document.getElementById("a-beds").value);
+        const baths = parseInt(document.getElementById("a-baths").value);
+        const guests = parseInt(document.getElementById("a-guests").value);
+        const amenities = document
+          .getElementById("a-amenities")
+          .value.split(",")
+          .map((x) => x.trim())
+          .filter(Boolean);
+        const img = document.getElementById("a-img").value.trim();
+        const status = document.getElementById("a-status").value;
+        const bookedDates = document
+          .getElementById("a-booked-dates")
+          .value.split(",")
+          .map((x) => x.trim())
+          .filter(Boolean);
+
+        if (!name || !location || !price) {
+          showToast("Please fill Villa Name, Location, and Price.");
+          return;
+        }
+
+        if (editingVillaId) {
+          const existing = villas.find((x) => x.id === editingVillaId);
+          if (!existing) {
+            showToast("Villa not found for update.");
+            cancelVillaEdit();
+            return;
+          }
+          existing.name = name;
+          existing.location = location;
+          existing.desc = desc;
+          existing.price = price || 0;
+          existing.beds = beds || 1;
+          existing.baths = baths || 1;
+          existing.guests = guests || 2;
+          existing.amenities = amenities;
+          existing.img = img;
+          existing.status = status;
+          existing.bookedDates = bookedDates;
+          saveVillas();
+          renderGrid();
+          renderAdminList();
+          showToast(`Updated "${name}"`);
+          cancelVillaEdit();
+          return;
+        }
+
+        const id = Date.now();
+        villas.push({
+          id,
+          name,
+          location,
+          desc,
+          price: price || 0,
+          beds: beds || 1,
+          baths: baths || 1,
+          guests: guests || 2,
+          amenities,
+          img,
+          status,
+          bookedDates,
+        });
+        saveVillas();
+        renderGrid();
+        renderAdminList();
+        showToast(`✅ "${name}" added to portal!`);
+        clearVillaForm();
+      }
+
+      function renderAdminList() {
+        const el = document.getElementById("admin-villa-list");
+        if (!villas.length) {
+          el.innerHTML =
+            '<p style="color:rgba(253,250,246,.4);font-size:.85rem">No villas added yet.</p>';
+          return;
+        }
+        el.innerHTML = villas
+          .map(
+            (v) => `
+    <div class="admin-villa-item">
+      <div style="flex:1">
+        <div class="avi-name">${v.name}</div>
+        <div class="avi-location">📍 ${v.location} · ₹${v.price.toLocaleString("en-IN")}/night</div>
+      </div>
+      <select class="avi-status-select" onchange="updateStatus(${v.id}, this.value)">
+        <option value="available" ${v.status === "available" ? "selected" : ""}>Available</option>
+        <option value="partial" ${v.status === "partial" ? "selected" : ""}>Partial</option>
+        <option value="booked" ${v.status === "booked" ? "selected" : ""}>Booked</option>
+      </select>
+      <button class="avi-edit" onclick="editVilla(${v.id})">Edit</button>
+      <button class="avi-delete" onclick="deleteVilla(${v.id})">Delete</button>
+    </div>`,
+          )
+          .join("");
+      }
+      function renderEnquiryList() {
+        const el = document.getElementById("admin-enquiry-list");
+        if (!el) return;
+        if (!enquiries.length) {
+          el.innerHTML =
+            '<p style="color: rgba(248, 251, 249, 0.48); font-size: 0.85rem">No enquiries yet.</p>';
+          return;
+        }
+        el.innerHTML = enquiries
+          .map((q) => {
+            const checkin = q.checkin || "-";
+            const checkout = q.checkout || "-";
+            const message = q.message ? escapeHtml(q.message) : "-";
+            return `
+    <div class="admin-enquiry-item">
+      <div class="aei-head">${escapeHtml(q.name)} - ${escapeHtml(q.contact)}</div>
+      <div class="aei-meta">
+        <div><strong>Villa:</strong> ${escapeHtml(q.villaName || "Not selected")}</div>
+        <div><strong>Check-in:</strong> ${escapeHtml(checkin)} | <strong>Check-out:</strong> ${escapeHtml(checkout)}</div>
+        <div><strong>Source:</strong> ${escapeHtml(q.source || "-")} | <strong>Time:</strong> ${escapeHtml(formatDateTime(q.createdAt))}</div>
+        <div><strong>Message:</strong> ${message}</div>
+      </div>
+    </div>`;
+          })
+          .join("");
+      }
+      function updateStatus(id, status) {
+        const v = villas.find((x) => x.id === id);
+        if (v) {
+          v.status = status;
+          saveVillas();
+          renderGrid();
+          showToast(`Status updated -> ${status}`);
+        }
+      }
+
+      function deleteVilla(id) {
+        if (!confirm("Delete this villa from the portal?")) return;
+        if (editingVillaId === id) {
+          cancelVillaEdit();
+        }
+        villas = villas.filter((x) => x.id !== id);
+        saveVillas();
+        renderGrid();
+        renderAdminList();
+        showToast("Villa removed.");
+      }
+
+      function updateContactVillaSelect() {
+        const sel = document.getElementById("contact-villa");
+        sel.innerHTML =
+          '<option value="">— Select a villa —</option>' +
+          villas
+            .map(
+              (v) =>
+                `<option value="${v.id}">${v.name} — ${v.location}</option>`,
+            )
+            .join("");
+      }
+
+      // ── TOAST ──────────────────────────────────────────────────────
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 3200);
+      }
+
+      // ── INIT ───────────────────────────────────────────────────────
+      loadVillas();
+      loadEnquiries();
+      renderGrid();
+    </script>
+  </body>
+</html>
